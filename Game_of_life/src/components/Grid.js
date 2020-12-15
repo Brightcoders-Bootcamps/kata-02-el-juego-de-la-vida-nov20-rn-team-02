@@ -1,17 +1,37 @@
-import React, {useState} from 'react';
-import {View,  StyleSheet, TouchableOpacity} from 'react-native';
-import {initialGrid} from '../utils';
+import React, {useState, useRef} from 'react';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {initialGrid, GenerateNewGrid} from '../utils';
+import Buttons from './Buttons';
 
-function Grid() {
+function Grid({game, setGame}) {
   const [grid, setGrid] = useState(() => {
     return initialGrid();
   });
-  
+  const gameRef = useRef(game);
+  gameRef.current = game;
+
   return (
     <View style={styles.container}>
       {grid.map((rows, i) =>
-        rows.map((col, j) => <TouchableOpacity key={`${i}${j}`} style={styles.box} />),
+        rows.map((col, j) => (
+          <TouchableOpacity
+            key={`${i}${j}`}
+            style={{
+              width: 41,
+              height: 41,
+              borderColor: 'black',
+              borderWidth: 2,
+              backgroundColor: grid[i][j] ? '#52ca00' : 'grey',
+              flexWrap: 'nowrap',
+            }}
+            onPress={() => {
+              setGrid(GenerateNewGrid(grid, i, j));
+            }}
+          />
+        )),
       )}
+
+      <Buttons game={game} setGame={setGame} setGrid={setGrid} />
     </View>
   );
 }
@@ -23,14 +43,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexWrap: 'wrap',
     justifyContent: 'center',
-  },
-  box: {
-    width: 41,
-    height: 41,
-    borderColor: 'black',
-    borderWidth: 2,
-    backgroundColor: 'gray',
-    flexWrap: 'nowrap',
   },
 });
 export default Grid;

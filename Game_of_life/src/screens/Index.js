@@ -1,16 +1,15 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
 import Grid from '../components/Grid';
 import Buttons from '../components/Buttons';
 function Index() {
+  const [game, setGame] = useState(false);
   return (
     <View>
-      <Grid />
-      <Buttons />
+      <Grid game={game} setGame={setGame} />
+      
     </View>
   );
 }
-const styles = StyleSheet.create({
-    
-});
+const styles = StyleSheet.create({});
 export default Index;
