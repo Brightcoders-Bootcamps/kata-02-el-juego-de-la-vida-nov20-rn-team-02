@@ -4,6 +4,7 @@ import {initialGrid, GenerateNewGrid} from '../utils';
 import Buttons from './Buttons';
 
 function Grid({game, setGame}) {
+  console.log("funcion de Grid");
   const [grid, setGrid] = useState(() => {
     return initialGrid();
   });

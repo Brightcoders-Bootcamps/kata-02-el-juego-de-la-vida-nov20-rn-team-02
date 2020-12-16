@@ -1,25 +1,35 @@
 import React, {useRef, useCallback} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {startGame, initialGrid} from '../utils';
+
+
 function Buttons({game, setGame, setGrid}) {
+  console.log("funcion de buttons");
   const gameRef = useRef(game);
   gameRef.current = game;
   const run = useCallback(() => startGame(gameRef.current, setGrid), []);
+  
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
+          console.log("Inicia el juego");
           setGame(!game);
-          if (!game) {
-            gameRef.current = true;
-            run();
-          }
+          if (!game) { 
+            function asd()            
+            {              
+              setInterval(() =>{gameRef.current = true;
+                run();}, 1000);                            
+            }             
+            asd();                                                                  
+          }                    
         }}>
         <Text style={styles.text}>{!game ? 'Start' : 'Stop'}</Text>
+
       </TouchableOpacity>
       {game ? (
-        <TouchableOpacity style={styles.btn} onPress={() => {
+        <TouchableOpacity style={styles.btn} onPress={() => {                              
           setGame(false)
           setGrid(initialGrid())
         }}>
