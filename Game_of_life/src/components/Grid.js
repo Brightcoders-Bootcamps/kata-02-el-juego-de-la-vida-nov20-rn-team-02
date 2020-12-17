@@ -3,8 +3,7 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {initialGrid, GenerateNewGrid} from '../utils';
 import Buttons from './Buttons';
 
-function Grid({game, setGame}) {
-  console.log("funcion de Grid");
+function Grid({game, setGame}) {  
   const [grid, setGrid] = useState(() => {
     return initialGrid();
   });

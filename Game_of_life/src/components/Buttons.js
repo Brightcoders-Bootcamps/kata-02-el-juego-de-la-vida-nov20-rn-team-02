@@ -4,37 +4,41 @@ import {startGame, initialGrid} from '../utils';
 
 
 function Buttons({game, setGame, setGrid}) {
-  console.log("funcion de buttons");
   const gameRef = useRef(game);
   gameRef.current = game;
   const run = useCallback(() => startGame(gameRef.current, setGrid), []);
-  
+  const autoRun = () =>{
+    run()
+    setInterval(autoRun, 1000)
+  }
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => {
-          console.log("Inicia el juego");
-          setGame(!game);
-          if (!game) { 
-            function asd()            
-            {              
-              setInterval(() =>{gameRef.current = true;
-                run();}, 1000);                            
-            }             
-            asd();                                                                  
-          }                    
+        onPress={() => {          
+          setGame(true);
+          run()                  
         }}>
-        <Text style={styles.text}>{!game ? 'Start' : 'Stop'}</Text>
-
+        <Text style={styles.text}>{!game ? 'Start' : 'Next'}</Text>
       </TouchableOpacity>
       {game ? (
-        <TouchableOpacity style={styles.btn} onPress={() => {                              
-          setGame(false)
-          setGrid(initialGrid())
-        }}>
-          <Text style={styles.text}>Reset</Text>
-        </TouchableOpacity>
+        <>
+          <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {          
+            if(game){
+              autoRun()
+            }                 
+          }}>
+          <Text style={styles.text}>Auto</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={() => {                              
+            setGame(false)
+            setGrid(initialGrid())
+          }}>
+            <Text style={styles.text}>Reset</Text>
+          </TouchableOpacity>
+        </>
       ) : null}
     </View>
   );
