@@ -79,6 +79,11 @@ El diseño propuesto tiene:
 
 ## Setup
 [Aquí se describen los pasos necesarios para ejecutar y probar este proyecto](setup/README.md)
+1.-El usuario ejecuta la aplicación en su dispositivo.
+2.-El usuario selecciona las celdas para definir la configuración incial.
+3.-El usuario presiona el botón de "Start" para iniciar el juego en modo automático.
+4.-El usuario presiona el boton de "Stop" para detener las iteraciones.
+5.-El usuario presiona el boton "Reset" para limpiar la cuadrícula y puede seleccionar una nueva configuración.
 
 ## Recursos
 [Para apoyo de tus actividades utiliza esta lista de recursos recomendados](https://github.com/bright-coders/commons/tree/master/topics/resources-react-native)
